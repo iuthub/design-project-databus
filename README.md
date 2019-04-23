@@ -1,6 +1,4 @@
-# Internet Programming: Design Project Assignment
-
-Find `ip_design_project.pdf` file in this folder, and refer to all the instructions given there. 
-
-You have to submit your project into this repository before 05.05.2019 (midnight).
-
+INSTALL LARAVEL:
+ 1. If composer not present:
+	php -r "eval('?>'.file_get_contents('https://getcomposer.org/installer'));"
+ 2. php composer.phar install
