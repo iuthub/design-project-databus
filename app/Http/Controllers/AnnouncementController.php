@@ -14,7 +14,7 @@ class AnnouncementController extends Controller
      */
     public function index()
     {
-
+        $arr = Announcement::
     }
 
     /**

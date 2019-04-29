@@ -8,6 +8,6 @@ class Photo extends Model
 {
     // belong to announcemnt
     public function announcemnt() {
-    	return this-> belongsTo(Announcement::class);
+    	return $this->belongsTo(Announcement::class);
     }
 }
