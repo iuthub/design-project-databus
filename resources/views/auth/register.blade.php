@@ -26,6 +26,20 @@
                         </div>
 
                         <div class="form-group row">
+                            <label for="name" class="col-md-4 col-form-label text-md-right">Login</label>
+
+                            <div class="col-md-6">
+                                <input id="login" type="text" class="form-control{{ $errors->has('login') ? ' is-invalid' : '' }}" name="login" value="{{ old('login') }}" required autocomplete="login" autofocus>
+
+                                @if ($errors->has('login'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('login') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
                             <div class="col-md-6">
@@ -34,6 +48,37 @@
                                 @if ($errors->has('email'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="phone_number" class="col-md-4 col-form-label text-md-right">Phone number</label>
+
+                            <div class="col-md-6">
+                                <input id="phone_number" type="text" class="form-control{{ $errors->has('phone_number') ? ' is-invalid' : '' }}" name="phone_number" value="{{ old('phone_number') }}" required autocomplete="phone_number">
+
+                                @if ($errors->has('phone_number'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('phone_number') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="city" class="col-md-4 col-form-label text-md-right">City</label>
+
+                            <div class="col-md-6">
+                                <select class="browser-default custom-select" name="city_id" required>
+                                    <option value="0" selected>Tashkent</option>
+                                    <option value="1">Ne tashkent</option>
+                                </select>
+
+                                @if ($errors->has('city_id'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('city_id') }}</strong>
                                     </span>
                                 @endif
                             </div>
