@@ -14,7 +14,8 @@ class AnnouncementController extends Controller
      */
     public function index()
     {
-        $arr = Announcement::
+        $announcements = Announcement::all();
+        return view("home"); // change to index for annoucements
     }
 
     /**
@@ -24,7 +25,7 @@ class AnnouncementController extends Controller
      */
     public function create()
     {
-        //
+        return view("announcement.create");
     }
 
     /**
@@ -35,7 +36,13 @@ class AnnouncementController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), []); //todo:: add rules
+        $validator->validate();
+        $data = $request->all();
+        Announcement::create($data);
+        return redirect()
+                ->route("announcement.index")
+                ->with("info", "Created!");
     }
 
     /**
@@ -44,9 +51,11 @@ class AnnouncementController extends Controller
      * @param  \App\Announcement  $announcement
      * @return \Illuminate\Http\Response
      */
-    public function show(Announcement $announcement)
+    public function show(Request $request)
     {
-        //
+        $announcement = Announcement::find($request->id);
+        return view("announcement.view")
+                ->with("data", $announcement);
     }
 
     /**
@@ -55,9 +64,11 @@ class AnnouncementController extends Controller
      * @param  \App\Announcement  $announcement
      * @return \Illuminate\Http\Response
      */
-    public function edit(Announcement $announcement)
+    public function edit(Request $request)
     {
-        //
+        $announcement = Announcement::find($request->id);
+        return view("announcement.edit")
+                ->with("data", $announcement);
     }
 
     /**
@@ -69,7 +80,14 @@ class AnnouncementController extends Controller
      */
     public function update(Request $request, Announcement $announcement)
     {
-        //
+        //validation of request?
+        $data = $request->all();
+        $announcement = Announcement::find($request->id);
+        $announcement->update($data);
+        return redirect()
+            ->route("announcement.view")
+            ->with("info", "Updated!");
+
     }
 
     /**
@@ -78,8 +96,13 @@ class AnnouncementController extends Controller
      * @param  \App\Announcement  $announcement
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Announcement $announcement)
+    public function destroy(Request $request)
     {
-        //
+        $announcement = Announcement::find($request->id);
+        // $announcement->delete();
+        return redirect()
+                ->route("announcement.index")
+                ->with("info", "Deleted");
+
     }
 }
