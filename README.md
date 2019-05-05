@@ -1,5 +1,5 @@
   <h1 align="center">Internet Programming: PROJECT</h1>
-  <p align="center"><img src="public/assets/logo.png" width="140" height="140></p>
+  <p align="center"><img src="public/assets/logo.png" width="140"; height="140></p>
 
 `Project Name` &nbsp; **UzCommunity**
 
