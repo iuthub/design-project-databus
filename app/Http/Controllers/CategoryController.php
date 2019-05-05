@@ -15,6 +15,9 @@ class CategoryController extends Controller
     public function index()
     {
         //
+        $cats = Category::all();
+        return view("category.index")
+                    ->with("data", $cats);
     }
 
     /**
@@ -25,6 +28,7 @@ class CategoryController extends Controller
     public function create()
     {
         //
+        return view("category.create");
     }
 
     /**
@@ -35,7 +39,13 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), []); //todo:: add rules
+        $validator->validate();
+        $data = $request->all();
+        Category::create($data);
+        return redirect()
+                ->route("category.index")
+                ->with("info", "Created!");
     }
 
     /**
@@ -46,7 +56,9 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        //
+        $cat = Category::find($request->id);
+        return view("category.view")
+                ->with("data", $cat);
     }
 
     /**
@@ -57,7 +69,9 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+        $cat = Category::find($request->id);
+        return view("category.edit")
+                ->with("data", $cat);
     }
 
     /**
@@ -69,7 +83,13 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+         //validation of request?
+         $data = $request->all();
+         $cat = Category::find($request->id);
+         $cat->update($data);
+         return redirect()
+             ->route("category.view")
+             ->with("info", "Updated!");
     }
 
     /**
@@ -80,6 +100,10 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        $cat = Category::find($request->id);
+        // $announcement->delete();
+        return redirect()
+                ->route("category.index")
+                ->with("info", "Deleted");
     }
 }
