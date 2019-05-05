@@ -18,6 +18,9 @@ Route::get('/', function () {
 Route::get('/cards', function () {
     return view('cards');
 });
+Route::get('/card_more', function () {
+    return view('card_more');
+});
 
 Auth::routes();
 

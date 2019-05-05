@@ -67,7 +67,7 @@
       </div>
     </div>
   </div>
-
+  
 
   <div class="card">
     <img class="card-img-top"src="https://picsum.photos/400" alt="Card image cap">
