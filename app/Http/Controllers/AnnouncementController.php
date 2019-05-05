@@ -15,7 +15,7 @@ class AnnouncementController extends Controller
     public function index()
     {
         $announcements = Announcement::with(["user", "comments"])->get();
-        return view("cards")
+        return view("announcement.index")
                 ->with("data", $announcements); // change to index for annoucements
     }
 
@@ -54,7 +54,10 @@ class AnnouncementController extends Controller
      */
     public function show(Request $request)
     {
-        $announcement = Announcement::find($request->id);
+        $announcement = Announcement::with("comments")
+                            ->find($request->id);
+        $announcement->views = $announcement->views + 1;
+        $announcement->save(); 
         return view("announcement.view")
                 ->with("data", $announcement);
     }

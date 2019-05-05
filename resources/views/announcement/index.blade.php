@@ -5,7 +5,7 @@
   @foreach ($data as $record)
   <div class="card">
     @if((rand(0, 1)))
-    <img class="card-img-top"src="https://picsum.photos/400" alt="Card image cap">
+      <img class="card-img-top"src="https://picsum.photos/400" alt="Card image cap">
     @endif
     <div class="card-body">
       <h5 class="card-title">{{$record->title}}</h5>
@@ -16,7 +16,7 @@
         <small class="text-muted"><i class="material-icons small">comment</i>{{count($record->comments)}} commments</small>
       </p>
       <div class="float-left">
-        <a href="#" class="btn btn-success"><i class="material-icons small">assignment</i> View</a>
+        <a href='{{route("announcement.view", ["id"=>$record->id])}}' class="btn btn-success"><i class="material-icons small">assignment</i> View</a>
       </div>
       <div class="float-right" style="margin-bottom: 10px">
         <a href="#"><i class="material-icons medium" style="margin: 10px" >thumb_up</i></a>

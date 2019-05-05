@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Comment;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 
 class CommentController extends Controller
@@ -31,7 +32,9 @@ class CommentController extends Controller
         $validator = Validator::make($request->all(), []); //todo:: add rules
         $validator->validate();
         $data = $request->all();
-        $announce_id = $data->announcement_id;
+        $announce_id = $data['announcement_id'];
+        $data['likes'] = 0;
+        $data['dislikes'] = 0;
         Comment::create($data);
         return redirect()
                 ->route("announcement.view", ['id' => $announce_id])
