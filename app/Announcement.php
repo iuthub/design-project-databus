@@ -8,7 +8,20 @@ class Announcement extends Model
 {
     //
     protected $fillable = [
-
+        'title',
+        'content',
+        'city_id',
+        'views',
+        'district_id',
+        'likes',
+        'dislikes',
+        'type',
+        'user_id',
+        'status',
+        'date',
+        'extra',
+        'lat',
+        'lng'
     ];
 
     public function user() {
