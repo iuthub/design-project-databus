@@ -14,6 +14,10 @@ class Comment extends Model
 		'dislikes',
 		'message'
 	];
+
+	protected $with = [
+		'user'
+	];
 	// belongs to an
 	public function announcement() {
 		return $this->belongsTo(Announcement::class);
