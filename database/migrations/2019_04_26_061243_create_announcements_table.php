@@ -32,9 +32,9 @@ class CreateAnnouncementsTable extends Migration
             $table->timestamps();
         });
 
-        Schema::table('announcements', function (Blueprint $table) {
-            $table->foreign('user_id')->references('id')->on('users');
-        });
+        // Schema::table('announcements', function (Blueprint $table) {
+        //     $table->foreign('user_id')->references('id')->on('users');
+        // });
     }
 
     /**
