@@ -129,4 +129,15 @@ class AnnouncementController extends Controller
                 ->with("info", "Deleted");
 
     }
+
+    public function rate($id, Request $request) {
+        $announcement = Announcement::find($id);
+        if($request->rate == 1)
+            $announcement->likes = $announcement->likes + 1;
+        else if($request->rate == -1)
+            $announcement->dislikes = $announcement->dislikes + 1;
+        $announcement->save();
+        return redirect()
+            ->route("announcement.index");
+    } 
 }

@@ -23,8 +23,12 @@
       <div class="float-right" style="margin-bottom: 10px">
         <p class="card-text"><p class="text-muted">
         <a href="#">{{$data->user->login}}</a> at {{ $data->date}}</p>
-        <a href="#"><i class="material-icons medium float-right" style="margin: 10px" >thumb_up</i></a>
-        <a href="#"><i class="material-icons medium float-right" style="margin: 10px" >thumb_down</i></a>
+        <a href="{{route('announcement.like', ['id'=> $data->id, 'rate' => 1])}}"><i class="material-icons medium" style="margin: 10px" >thumb_up</i>
+          {{ $data->likes}} 
+        </a>
+        <a href="{{route('announcement.like', ['id'=> $data->id, 'rate' => -1])}}"><i class="material-icons medium" style="margin: 10px" >thumb_down</i>
+          {{ $data->dislikes}} 
+        </a>
       </div>
       </div>
 </div>

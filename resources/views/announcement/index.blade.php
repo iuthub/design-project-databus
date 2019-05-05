@@ -21,8 +21,12 @@
         <a href='{{route("announcement.view", ["id"=>$record->id])}}' class="btn btn-success"><i class="material-icons small">assignment</i> View</a>
       </div>
       <div class="float-right" style="margin-bottom: 10px">
-        <a href="#"><i class="material-icons medium" style="margin: 10px" >thumb_up</i></a>
-        <a href="#"><i class="material-icons medium" style="margin: 10px" >thumb_down</i></a>
+        <a href="{{route('announcement.like', ['id'=> $record->id, 'rate' => 1])}}"><i class="material-icons medium" style="margin: 10px" >thumb_up</i>
+          {{ $record->likes}} 
+        </a>
+        <a href="{{route('announcement.like', ['id'=> $record->id, 'rate' => -1])}}"><i class="material-icons medium" style="margin: 10px" >thumb_down</i>
+          {{ $record->dislikes}} 
+        </a>
       </div>
     </div>
   </div>

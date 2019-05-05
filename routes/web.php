@@ -20,14 +20,24 @@ Route::get('/home',  [
     'as' => 'announcement.index'
 ]);
 
-Route::get('/announcement/create',  [
+Route::get('/announcement',  [
     'uses' => 'AnnouncementController@create',
     'as' => 'announcement.create'
 ]);
 
-Route::post('/announcement/create',  [
+Route::post('/announcement',  [
     'uses' => 'AnnouncementController@store',
     'as' => 'announcement.create'
+]);
+
+Route::patch('/announcement',  [
+    'uses' => 'AnnouncementController@edit',
+    'as' => 'announcement.edit'
+]);
+
+Route::get('/announcement/{id}/like',  [
+    'uses' => 'AnnouncementController@rate',
+    'as' => 'announcement.like'
 ]);
 
 Route::get('/announcement/{id}',  [
