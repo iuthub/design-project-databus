@@ -15,16 +15,9 @@ class CommentController extends Controller
     public function index()
     {
         //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        $comments = Comment::all();
+        return view("comments.index")
+                    ->with("data", $comments);
     }
 
     /**
@@ -35,7 +28,14 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), []); //todo:: add rules
+        $validator->validate();
+        $data = $request->all();
+        $announce_id = $data->announcement_id;
+        Comment::create($data);
+        return redirect()
+                ->route("announcement.view", ['id' => $announce_id])
+                ->with("info", "Added!");
     }
 
     /**
@@ -44,9 +44,11 @@ class CommentController extends Controller
      * @param  \App\Comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function show(Comment $comment)
+    public function show(Request $request)
     {
-        //
+        $comments = Comment::find($request->id);
+        return view("comments.view")
+                ->with("data", $comments);
     }
 
     /**
@@ -57,7 +59,7 @@ class CommentController extends Controller
      */
     public function edit(Comment $comment)
     {
-        //
+        //no edit
     }
 
     /**
@@ -69,7 +71,7 @@ class CommentController extends Controller
      */
     public function update(Request $request, Comment $comment)
     {
-        //
+        //no update
     }
 
     /**
@@ -78,8 +80,12 @@ class CommentController extends Controller
      * @param  \App\Comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Comment $comment)
+    public function destroy(Request $request)
     {
-        //
+        $data = $request->all();
+        $announce_id = $data->announcement_id;
+        return redirect()
+            ->route("announcement.view", ['id' => $announce_id])
+            ->with("info", "Deleted!");
     }
 }
