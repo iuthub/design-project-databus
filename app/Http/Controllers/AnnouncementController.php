@@ -123,7 +123,7 @@ class AnnouncementController extends Controller
     public function destroy(Request $request)
     {
         $announcement = Announcement::find($request->id);
-        // $announcement->delete();
+        $announcement->delete();
         return redirect()
                 ->route("announcement.index")
                 ->with("info", "Deleted");

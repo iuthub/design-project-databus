@@ -86,7 +86,9 @@ class CommentController extends Controller
     public function destroy(Request $request)
     {
         $data = $request->all();
-        $announce_id = $data->announcement_id;
+        $com = Comment::find($request->id);
+        $announce_id = $com->announcement->id;
+        $com->delete();
         return redirect()
             ->route("announcement.view", ['id' => $announce_id])
             ->with("info", "Deleted!");

@@ -1,6 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
+@if(Session::has('info')) 
+  <div class="row"> 
+    <div class="col-md-12"> 
+      <p class="alert alert-info">{{ Session::get('info') }}</p> 
+    </div> 
+  </div> 
+@endif
 <div class="card-columns">
   @foreach ($data as $record)
   <div class="card">
@@ -19,6 +26,9 @@
       </p>
       <div class="float-left">
         <a href='{{route("announcement.view", ["id"=>$record->id])}}' class="btn btn-success"><i class="material-icons small">assignment</i> View</a>
+        @if(Auth::user()->status == 1)
+          <a href='{{route("announcement.delete", ["id"=>$record->id])}}' class="btn btn-danger"><i class="material-icons small">delete</i> Delete</a>
+        @endif
       </div>
       <div class="float-right" style="margin-bottom: 10px">
         <a href="{{route('announcement.like', ['id'=> $record->id, 'rate' => 1])}}"><i class="material-icons medium" style="margin: 10px" >thumb_up</i>

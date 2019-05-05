@@ -4,7 +4,7 @@
   @if(Session::has('info')) 
   <div class="row"> 
     <div class="col-md-12"> 
-      <p class="alert alert-info">{{ Session::get('info') }}</p> 
+      <p class="alert alert-danger">{{ Session::get('info') }}</p> 
     </div> 
   </div> 
   @endif
@@ -47,6 +47,9 @@
     <blockquote class="blockquote mb-0 card-body">
       <p>{{$com->message}}</p>
       <p class="card-text"><small class="text-muted">At {{$com->created_at}}</small></p>
+      @if(Auth::user()->status == 1)
+          <a href='{{route("comment.delete", ["id"=>$com->id])}}' class="btn btn-danger"><i class="material-icons small">delete</i> Delete</a>
+      @endif
     </blockquote>
     </div>
     </div>

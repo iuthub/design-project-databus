@@ -20,6 +20,8 @@ Route::get('/home',  [
     'as' => 'announcement.index'
 ]);
 
+
+
 Route::get('/announcement',  [
     'uses' => 'AnnouncementController@create',
     'as' => 'announcement.create'
@@ -40,6 +42,11 @@ Route::get('/announcement/{id}/like',  [
     'as' => 'announcement.like'
 ]);
 
+Route::get('/announcement/{id}/delete',  [
+    'uses' => 'AnnouncementController@destroy',
+    'as' => 'announcement.delete'
+]);
+
 Route::get('/announcement/{id}',  [
     'uses' => 'AnnouncementController@show',
     'as' => 'announcement.view'
@@ -48,6 +55,11 @@ Route::get('/announcement/{id}',  [
 Route::post('/comment',  [
     'uses' => 'CommentController@store',
     'as' => 'comment.create'
+]);
+
+Route::get('/comment/{id}/delete',  [
+    'uses' => 'CommentController@destroy',
+    'as' => 'comment.delete'
 ]);
 
 Route::get('/profile', function () {
