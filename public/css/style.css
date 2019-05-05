@@ -1,0 +1,7 @@
+.container{
+	background-color:#f4f4f4;
+}
+
+.row>div[class*="col-"]>div {
+  background-color:#ccc;
+}

@@ -40,8 +40,8 @@ Route::post('/comment',  [
     'as' => 'comment.create'
 ]);
 
-
-
+Route::get('/profile', function () {
+    return view('profile');
+});
 
 Auth::routes();
-
