@@ -20,6 +20,16 @@ Route::get('/home',  [
     'as' => 'announcement.index'
 ]);
 
+Route::get('/announcement/create',  [
+    'uses' => 'AnnouncementController@create',
+    'as' => 'announcement.create'
+]);
+
+Route::post('/announcement/create',  [
+    'uses' => 'AnnouncementController@store',
+    'as' => 'announcement.create'
+]);
+
 Route::get('/announcement/{id}',  [
     'uses' => 'AnnouncementController@show',
     'as' => 'announcement.view'
@@ -29,6 +39,9 @@ Route::post('/comment',  [
     'uses' => 'CommentController@store',
     'as' => 'comment.create'
 ]);
+
+
+
 
 Auth::routes();
 

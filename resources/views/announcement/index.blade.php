@@ -4,7 +4,9 @@
 <div class="card-columns">
   @foreach ($data as $record)
   <div class="card">
-    @if((rand(0, 1)))
+    @if($record->photo)
+      <img class="card-img-top"src="{{url($record->photo->url)}}" alt="Card image cap">
+    @elseif((rand(0, 1)))
       <img class="card-img-top"src="https://picsum.photos/400" alt="Card image cap">
     @endif
     <div class="card-body">

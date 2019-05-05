@@ -1,10 +1,21 @@
 @extends('layouts.app')
 
 @section('content')
+  @if(Session::has('info')) 
+  <div class="row"> 
+    <div class="col-md-12"> 
+      <p class="alert alert-info">{{ Session::get('info') }}</p> 
+    </div> 
+  </div> 
+  @endif
+
   <span>
+  
   <div class="card" style="margin-right: 20%; margin-left: 20%">
-      @if((rand(0, 1)))
-        <img class="card-img-top" height="400" width="400" src="https://picsum.photos/400" alt="Card image cap" >
+      @if($data->photo)
+        <img class="card-img-top"src="{{url($data->photo->url)}}" alt="Card image cap">
+      @elseif((rand(0, 1)))
+        <img class="card-img-top"src="https://picsum.photos/400" alt="Card image cap">
       @endif
       <div class="card-body">
         <h5 class="card-title">{{$data->title}}</h5>

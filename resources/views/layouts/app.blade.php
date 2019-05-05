@@ -42,6 +42,10 @@
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
                            
+                            
+                            <li class="nav-item">
+                                <a class="btn btn-primary" href="{{ route('announcement.create') }}">Add</a>
+                            </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('login') }}">Category1</a>
                             </li>

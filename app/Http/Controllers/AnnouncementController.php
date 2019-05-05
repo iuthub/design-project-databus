@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Announcement;
+use App\Photo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class AnnouncementController extends Controller
 {
@@ -14,7 +16,9 @@ class AnnouncementController extends Controller
      */
     public function index()
     {
-        $announcements = Announcement::with(["user", "comments"])->get();
+        $announcements = Announcement::with(["user", "comments", "photo"])
+                            ->orderBy("created_at")
+                            ->get();
         return view("announcement.index")
                 ->with("data", $announcements); // change to index for annoucements
     }
@@ -40,7 +44,23 @@ class AnnouncementController extends Controller
         $validator = Validator::make($request->all(), []); //todo:: add rules
         $validator->validate();
         $data = $request->all();
-        Announcement::create($data);
+        $data['views'] = 0;
+        $data['likes'] = 0;
+        $data['dislikes'] = 0;
+        $data['district_id'] = 0;
+        $data['status'] = 0;
+        $data['lat'] = 0;
+        $data['lng'] = 0;
+        $data['date'] = date('Y-m-d');
+        $an = Announcement::create($data);
+        if($request->hasFile("image")) {
+            $imageName = time().'.'.request()->image->getClientOriginalExtension();
+            $request->image->move(public_path('images'), $imageName);
+            $an->photo()->create([
+                'announcement_id' => $an->id, 
+                'url' => "images/".$imageName
+            ]);
+        }
         return redirect()
                 ->route("announcement.index")
                 ->with("info", "Created!");
