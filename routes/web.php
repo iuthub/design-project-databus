@@ -15,17 +15,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/cards', function () {
-    return view('cards');
-});
-Route::get('/card_more', function () {
-    return view('card_more');
-});
+Route::get('/home',  [
+    'uses' => 'AnnouncementController@index',
+    'as' => 'announcement.index'
+]);
+
+Route::get('/card/{id}',  [
+    'uses' => 'AnnouncementController@show',
+    'as' => 'announcement.view'
+]);
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');

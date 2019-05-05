@@ -14,8 +14,9 @@ class AnnouncementController extends Controller
      */
     public function index()
     {
-        $announcements = Announcement::all();
-        return view("home"); // change to index for annoucements
+        $announcements = Announcement::with(["user", "comments"])->get();
+        return view("cards")
+                ->with("data", $announcements); // change to index for annoucements
     }
 
     /**
