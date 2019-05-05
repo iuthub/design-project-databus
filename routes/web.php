@@ -32,7 +32,7 @@ Route::post('/announcement',  [
     'as' => 'announcement.create'
 ]);
 
-Route::patch('/announcement',  [
+Route::get('/announcement/{id}/edit',  [
     'uses' => 'AnnouncementController@edit',
     'as' => 'announcement.edit'
 ]);

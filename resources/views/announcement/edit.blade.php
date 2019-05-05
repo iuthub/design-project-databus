@@ -15,7 +15,7 @@
                             <label for="title" class="col-md-4 col-form-label text-md-right">Title</label>
 
                             <div class="col-md-6">
-                                <input id="title" type="text" class="form-control{{ $errors->has('title') ? ' is-invalid' : '' }}" name="title" value="{{ old('title') }}" required autocomplete="name" autofocus>
+                                <input id="title" type="text" class="form-control{{ $errors->has('title') ? ' is-invalid' : '' }}" name="title" value="{{ $data->title }}" required autocomplete="name" autofocus>
 
                                 @if ($errors->has('name'))
                                     <span class="invalid-feedback" role="alert">
@@ -29,7 +29,7 @@
                             <label for="content" class="col-md-4 col-form-label text-md-right">Content</label>
 
                             <div class="col-md-6">
-                                <textarea id="content" rows=3 class="form-control{{ $errors->has('login') ? ' is-invalid' : '' }}" name="content" value="{{ old('content') }}" required autocomplete="content" autofocus>
+                                <textarea id="content" rows=3 class="form-control{{ $errors->has('login') ? ' is-invalid' : '' }}" name="content" value="{{ $data->content }}" required autocomplete="content" autofocus>
                                 </textarea>
                                 @if ($errors->has('content'))
                                     <span class="invalid-feedback" role="alert">
@@ -43,7 +43,7 @@
                             <label for="extra" class="col-md-4 col-form-label text-md-right">Extra</label>
 
                             <div class="col-md-6">
-                                <input id="content" type="text" class="form-control{{ $errors->has('extra') ? ' is-invalid' : '' }}" name="extra" value="{{ old('extra') }}" required autocomplete="extra" autofocus></textarea>
+                                <input id="content" type="text" class="form-control{{ $errors->has('extra') ? ' is-invalid' : '' }}" name="extra" value="{{ $data->extra }}" required autocomplete="extra" autofocus></textarea>
                                 @if ($errors->has('extra'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('extra') }}</strong>
@@ -74,7 +74,7 @@
                         <div class="form-group row">
                             <label for="type" class="col-md-4 col-form-label text-md-right">Type</label>
                             <div class="col-md-6">
-                                <select class="browser-default custom-select" name="type" required>
+                                <select class="browser-default custom-select" name="type" value="1" required>
                                     <option value="0" selected>Announcement</option>
                                     <option value="1">Event</option>
                                 </select>
@@ -102,7 +102,7 @@
                         </div>
                         
                         <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
-                        <input type="submit" class="btn btn-primary" style="margin-top: 5px" value="Comment!">
+                        <input type="submit" class="btn btn-primary" style="margin-top: 5px" value="Save!">
                         </div>
 
                        

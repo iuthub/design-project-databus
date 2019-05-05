@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Announcement;
 use App\Photo;
+use Illuminate\Support\Facades\Auth;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -91,7 +92,14 @@ class AnnouncementController extends Controller
      */
     public function edit(Request $request)
     {
+        $user = Auth::user();
         $announcement = Announcement::find($request->id);
+        if($announcement->user_id != $user->id) {
+            if($user->state != 1)
+                return redirect()->route("announcement.index")
+                        ->with("info", "It's not yours");
+        }
+            
         return view("announcement.edit")
                 ->with("data", $announcement);
     }

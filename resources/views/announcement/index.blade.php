@@ -31,6 +31,9 @@
         <a href='{{route("announcement.view", ["id"=>$record->id])}}' class="btn btn-success"><i class="material-icons small">assignment</i> View</a>
         @if(Auth::user()->status == 1)
           <a href='{{route("announcement.delete", ["id"=>$record->id])}}' class="btn btn-danger"><i class="material-icons small">delete</i> Delete</a>
+          <a href='{{route("announcement.edit", ["id"=>$record->id])}}' class="btn btn-primary"><i class="material-icons small">assignment</i> Edit</a>
+        @elseif(Auth::user()->id == $record->id)
+          <a href='{{route("announcement.edit", ["id"=>$record->id])}}' class="btn btn-primary"><i class="material-icons small">assignment</i> Edit</a>
         @endif
       </div>
       <div class="float-right" style="margin-bottom: 10px">

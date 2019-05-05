@@ -102,7 +102,7 @@
                         </div>
                         
                         <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
-                        <input type="submit" class="btn btn-primary" style="margin-top: 5px" value="Comment!">
+                        <input type="submit" class="btn btn-primary" style="margin-top: 5px" value="Save!">
                         </div>
 
                        
