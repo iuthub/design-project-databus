@@ -8,6 +8,9 @@
     </div> 
   </div> 
 @endif
+@isset($info)
+<div class="text-center"><h1>{{$info}}'s announcements</h2></div>
+@endif
 <div class="card-columns">
   @foreach ($data as $record)
   <div class="card">
@@ -20,7 +23,7 @@
       <h5 class="card-title">{{$record->title}}</h5>
       <p class="card-text">{{$record->content}}</p>
       <p class="card-text"><p class="text-muted">
-        <a href="#">{{$record->user->login}}</a> at {{ $record->date}}</p>
+        <a href="{{route('user.index', $record->user->id)}}">{{$record->user->login}}</a> at {{ $record->date}}</p>
         <small class="text-muted"><i class="material-icons small">visibility</i>{{$record->views}} views</small>
         <small class="text-muted"><i class="material-icons small">comment</i>{{count($record->comments)}} commments</small>
       </p>

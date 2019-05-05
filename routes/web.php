@@ -62,6 +62,11 @@ Route::get('/comment/{id}/delete',  [
     'as' => 'comment.delete'
 ]);
 
+Route::get('/user/{id}',  [
+    'uses' => 'AnnouncementController@getByUser',
+    'as' => 'user.index'
+]);
+
 Route::get('/profile', function () {
     return view('profile');
 });

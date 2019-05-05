@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Announcement;
 use App\Photo;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -139,5 +140,16 @@ class AnnouncementController extends Controller
         $announcement->save();
         return redirect()
             ->route("announcement.index");
-    } 
+    }
+    
+    public function getByUser(Request $request) {
+        $user = User::find($request->id);
+        $announcements = $user->announcement()
+                ->with(["user", "comments", "photo"])
+                ->orderBy("created_at")
+                ->get();
+        return view("announcement.index")
+                ->with("info", $user->name)
+                ->with("data", $announcements);
+    }
 }
